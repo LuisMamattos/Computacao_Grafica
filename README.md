@@ -1,0 +1,1 @@
+Este repositório é dedicado aos meus estudos sobre computação gráfica, com um foco especial em WebGL. Aqui, você encontrará exemplos de código, exercícios e experimentos realizados para entender melhor os conceitos e técnicas de WebGL.
