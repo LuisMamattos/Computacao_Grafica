@@ -589,10 +589,31 @@ function drawScene(timestamp) {
     const rotationMatrix3x = createRotationMatrixX(variacao3 * 800 * Math.PI / 180);
     const translationMatrix3 = createTranslationMatrix(variacao3, variacao3);
 
-    const transformMatrix1 = multiplyMatrices(orthoMatrix, multiplyMatrices(rotationMatrix1x, multiplyMatrices(rotationMatrix1y, multiplyMatrices(rotationMatrix1z, multiplyMatrices(translationMatrix1, scaleMatrix)))));
-    const transformMatrix2 = multiplyMatrices(orthoMatrix, multiplyMatrices(rotationMatrix2x, multiplyMatrices(rotationMatrix2y, multiplyMatrices(rotationMatrix2z, multiplyMatrices(translationMatrix2, scaleMatrix)))));
-    const transformMatrix3 = multiplyMatrices(orthoMatrix, multiplyMatrices(rotationMatrix3x, multiplyMatrices(rotationMatrix3y, multiplyMatrices(rotationMatrix3z, multiplyMatrices(translationMatrix3, scaleMatrix)))));
-    
+    var Transf_Aux1 = scaleMatrix;    
+    Transf_Aux1 = multiplyMatrices(translationMatrix1, Transf_Aux1);
+    Transf_Aux1 = multiplyMatrices(rotationMatrix1z, Transf_Aux1);
+    Transf_Aux1 = multiplyMatrices(rotationMatrix1y, Transf_Aux1);
+    Transf_Aux1 = multiplyMatrices(rotationMatrix1x, Transf_Aux1);
+    Transf_Aux1 = multiplyMatrices(orthoMatrix, Transf_Aux1);
+    const transformMatrix1 = Transf_Aux1;
+
+    var Transf_Aux2 = scaleMatrix;    
+    Transf_Aux2 = multiplyMatrices(translationMatrix2, Transf_Aux2);
+    Transf_Aux2 = multiplyMatrices(rotationMatrix2z, Transf_Aux2);
+    Transf_Aux2 = multiplyMatrices(rotationMatrix2y, Transf_Aux2);
+    Transf_Aux2 = multiplyMatrices(rotationMatrix2x, Transf_Aux2);
+    Transf_Aux2 = multiplyMatrices(orthoMatrix, Transf_Aux2);
+    const transformMatrix2 = Transf_Aux2;
+
+    var Transf_Aux3 = scaleMatrix;    
+    Transf_Aux3 = multiplyMatrices(translationMatrix3, Transf_Aux3);
+    Transf_Aux3 = multiplyMatrices(rotationMatrix3z, Transf_Aux3);
+    Transf_Aux3 = multiplyMatrices(rotationMatrix3y, Transf_Aux3);
+    Transf_Aux3 = multiplyMatrices(rotationMatrix3x, Transf_Aux3);
+    Transf_Aux3 = multiplyMatrices(orthoMatrix, Transf_Aux3);
+    const transformMatrix3 = Transf_Aux3;
+
+
     gl.uniformMatrix4fv(uTransformMatrixLoc, false, transformMatrix1);
     gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer1);
     gl.enableVertexAttribArray(aPositionLoc);
